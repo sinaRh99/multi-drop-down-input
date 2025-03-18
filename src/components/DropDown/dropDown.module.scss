@@ -1,0 +1,17 @@
+@import "@/styles/variables.scss";
+
+.wrapper {
+  .textField {
+    height: 44px;
+    width: 100%;
+    max-width: 350px;
+    border-width: 2px;
+    border-color: $color-text;
+    border-radius: $size-radius;
+
+    &:focus {
+      border-color: $color-primary;
+      outline: 3px solid $color-primary-low;
+    }
+  }
+}

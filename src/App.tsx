@@ -1,5 +1,11 @@
+import DropDown from "./components/DropDown";
+
 function App() {
-  return <div>hello word</div>;
+  return (
+    <div>
+      <DropDown />
+    </div>
+  );
 }
 
 export default App;
