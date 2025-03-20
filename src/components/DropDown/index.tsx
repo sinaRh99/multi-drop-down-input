@@ -2,10 +2,11 @@
 
 import styles from './dropDown.module.scss';
 import { useEffect, useRef, useState } from 'react';
-import DropDownItem from './DropDownItem';
+import DropdownItem from './DropdownItem';
 import { useClickOutside } from '../../hooks';
+import { DropDownProps } from './types';
 
-export default function DropDown() {
+export function Dropdown({ placeholder }: DropDownProps) {
   const [newItemValue, setNewItemValue] = useState('');
   const [dropdownItems, setDropdownItems] = useState<string[]>([
     'Education 🎓',
@@ -51,6 +52,7 @@ export default function DropDown() {
         onChange={e => setNewItemValue(e.target.value)}
         className={styles.textField}
         id="drop-down"
+        placeholder={placeholder}
       />
       <label
         htmlFor="drop-down"
@@ -58,7 +60,7 @@ export default function DropDown() {
       >
         <div className={styles.wrapper}>
           {dropdownItems.map(item => (
-            <DropDownItem
+            <DropdownItem
               key={item}
               item={item}
               onToggleSelect={handleToggleSelect}

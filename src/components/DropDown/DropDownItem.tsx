@@ -2,7 +2,7 @@ import { DropDownItemProps } from './types';
 
 import styles from './dropDownItem.module.scss';
 
-export default function DropDownItem({
+export default function DropdownItem({
   item,
   isSelected,
   onToggleSelect,

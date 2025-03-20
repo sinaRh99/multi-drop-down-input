@@ -1,4 +1,4 @@
-import DropDown from './components/DropDown';
+import { Dropdown } from './components';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         alignItems: 'center',
       }}
     >
-      <DropDown />
+      <Dropdown placeholder="New interest" />
     </div>
   );
 }
