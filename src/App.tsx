@@ -1,8 +1,17 @@
-import DropDown from "./components/DropDown";
+import DropDown from './components/DropDown';
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        border: '1px solid red',
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <DropDown />
     </div>
   );

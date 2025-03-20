@@ -1,0 +1,19 @@
+@use '@/styles/_variables.scss';
+
+.item {
+  transition: 0.1s;
+  padding: 0.5rem;
+  font-weight: 500;
+  color: variables.$color-text;
+  border-radius: variables.$size-radius-small;
+  cursor: pointer;
+
+  &:hover {
+    color: variables.$color-primary;
+  }
+
+  &.selected {
+    background-color: variables.$color-primary-low;
+    color: variables.$color-primary;
+  }
+}
