@@ -1,30 +1,47 @@
 // import { DropDownProps } from "./types";
 
 import styles from './dropDown.module.scss';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DropDownItem from './DropDownItem';
+import { useClickOutside } from '../../hooks';
 
 export default function DropDown() {
   const [newItemValue, setNewItemValue] = useState('');
-  const [dropdownItems, setDropdownItems] = useState<string[]>([]);
+  const [dropdownItems, setDropdownItems] = useState<string[]>([
+    'Education 🎓',
+    'Yeeeah, science! 🔬',
+    'Art 🎭',
+    'Sport 🏐',
+    'Games 🎮',
+    'Health 🏥',
+  ]);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const dropdownRef = useRef<HTMLFormElement | null>(null);
+
+  const hasClickedOutside = useClickOutside(dropdownRef);
+
   const handleAddNewItem = (e: React.FormEvent) => {
     e.preventDefault();
-    setDropdownItems(prev => [...prev, newItemValue]);
+    setDropdownItems(prev => [newItemValue, ...prev]);
+    setSelectedItems(prev => [...prev, newItemValue]);
     setNewItemValue('');
   };
 
   const handleToggleSelect = (item: string) => {
-    console.log('🚀 ~ handleToggleSelect ~ item:', item);
     const itemExists = !!selectedItems.find(val => val === item);
     if (itemExists) setSelectedItems(prev => prev.filter(val => val !== item));
     else setSelectedItems(prev => [...prev, item]);
   };
 
+  useEffect(() => {
+    setIsDropdownOpen(false);
+  }, [hasClickedOutside]);
+
   return (
     <form
+      ref={dropdownRef}
       className={styles.wrapper}
       onSubmit={handleAddNewItem}
       onClick={() => setIsDropdownOpen(true)}
@@ -39,14 +56,16 @@ export default function DropDown() {
         htmlFor="drop-down"
         className={[styles.items, isDropdownOpen ? styles.open : ''].join(' ')}
       >
-        {dropdownItems.map(item => (
-          <DropDownItem
-            key={item}
-            item={item}
-            onToggleSelect={handleToggleSelect}
-            isSelected={!!selectedItems.find(val => val === item)}
-          />
-        ))}
+        <div className={styles.wrapper}>
+          {dropdownItems.map(item => (
+            <DropDownItem
+              key={item}
+              item={item}
+              onToggleSelect={handleToggleSelect}
+              isSelected={!!selectedItems.find(val => val === item)}
+            />
+          ))}
+        </div>
       </label>
     </form>
   );
