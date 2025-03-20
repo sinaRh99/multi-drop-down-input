@@ -52,6 +52,7 @@ export function Dropdown({ placeholder }: DropDownProps) {
         onChange={e => setNewItemValue(e.target.value)}
         className={styles.textField}
         id="drop-down"
+        autoComplete="off"
         placeholder={placeholder}
       />
       <label

@@ -1,6 +1,7 @@
 import { DropDownItemProps } from './types';
 
 import styles from './dropDownItem.module.scss';
+import { CheckIcon } from '../Icons';
 
 export default function DropdownItem({
   item,
@@ -13,6 +14,7 @@ export default function DropdownItem({
       onClick={() => onToggleSelect(item)}
     >
       {item}
+      {isSelected && <CheckIcon />}
     </div>
   );
 }

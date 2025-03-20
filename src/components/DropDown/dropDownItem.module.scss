@@ -7,6 +7,9 @@
   color: variables.$color-text;
   border-radius: variables.$size-radius-small;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &:hover {
     color: variables.$color-primary;
