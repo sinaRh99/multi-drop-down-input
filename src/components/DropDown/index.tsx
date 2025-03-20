@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import DropdownItem from './DropdownItem';
 import { useClickOutside } from '../../hooks';
 import { DropDownProps } from './types';
+import { ChevronIcon } from '../Icons';
+import { colors } from '../../constants/colors';
 
 export function Dropdown({ placeholder }: DropDownProps) {
   const [newItemValue, setNewItemValue] = useState('');
@@ -43,7 +45,10 @@ export function Dropdown({ placeholder }: DropDownProps) {
   return (
     <form
       ref={dropdownRef}
-      className={styles.wrapper}
+      className={[
+        styles.wrapper,
+        isDropdownOpen ? styles['wrapper-open'] : '',
+      ].join(' ')}
       onSubmit={handleAddNewItem}
       onClick={() => setIsDropdownOpen(true)}
     >
@@ -55,11 +60,11 @@ export function Dropdown({ placeholder }: DropDownProps) {
         autoComplete="off"
         placeholder={placeholder}
       />
-      <label
-        htmlFor="drop-down"
-        className={[styles.items, isDropdownOpen ? styles.open : ''].join(' ')}
-      >
-        <div className={styles.wrapper}>
+      <span className={styles.icon}>
+        <ChevronIcon color={isDropdownOpen ? colors.primary : undefined} />
+      </span>
+      <label htmlFor="drop-down" className={styles.items}>
+        <div className={styles.itemsHolder}>
           {dropdownItems.map(item => (
             <DropdownItem
               key={item}
